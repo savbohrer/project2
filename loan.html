@@ -1,1 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Loan Payment Calculator</title>
 
+    <script>
+        function calculatePayment() {
+
+            // Get values from inputs
+            let PV = parseFloat(document.getElementById("loanAmount").value);
+            let r = parseFloat(document.getElementById("interestRate").value);
+            let n = parseFloat(document.getElementById("years").value);
+
+            // Loan payment formula (REQUIRED FORMULA)
+            let P = ((r/100/12) * PV) / (1 - (1 + (r/100/12)) ** -(n*12));
+
+            // Display result in sentence format
+            document.getElementById("result").innerHTML =
+                "If you have a $" + PV +
+                " loan for " + n +
+                " years at " + r +
+                "% interest, your monthly payment will be $" +
+                P.toFixed(2) + ".";
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <h2>Loan Payment Calculator</h2>
+
+    <label>Loan Amount (PV): </label>
+    <input type="number" id="loanAmount"><br><br>
+
+    <label>Number of Years (n): </label>
+    <input type="number" id="years"><br><br>
+
+    <label>Annual Interest Rate (r %): </label>
+    <input type="number" id="interestRate" step="0.01"><br><br>
+
+    <button onclick="calculatePayment()">Calculate Payment</button>
+
+    <p id="result"></p>
+
+</body>
+</html>
